@@ -1,4 +1,5 @@
 import fastf1
+import matplotlib.pyplot as plt
 
 def main():
     session = fastf1.get_session(2024, "Monaco", "R")
@@ -42,6 +43,28 @@ def main():
 
     print("\nLeclerc Slowest Lap:")
     print(leclerc["LapTimeSeconds"].max(), " seconds")
+
+
+    plt.plot(
+        verstappen["LapNumber"],
+        verstappen["LapTimeSeconds"],
+        label="Verstappen"
+    )
+
+    plt.plot(
+        leclerc["LapNumber"],
+        leclerc["LapTimeSeconds"],
+        label="Leclerc"
+    )
+
+    plt.xlabel("Lap Number")
+    plt.ylabel("Lap Time (seconds)")
+    plt.title("Monaco 2024 Race Pace Comparison")
+
+    plt.legend()
+    plt.ylim(70, 95)
+
+    plt.show()
 
 if __name__ == "__main__":
     main()
